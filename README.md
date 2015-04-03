@@ -6,6 +6,7 @@ A library to post fun quotes to Slack and waste time
 
 (trout "djc") -- Slap user djc with some kind of fish
 (chuck "djc") -- Reveal facts about Chuck Norris to user djc
+(dune "kw") -- Send a Dune quote to user kw
 
 ## License
 
