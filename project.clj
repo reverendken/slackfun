@@ -8,4 +8,4 @@
                  [com.cemerick/url "0.1.1"]
                  [stylefruits/gniazdo "0.4.0"]
                  [org.clojure/data.json "0.2.6"]]
-  :source-paths ["src/slackfun"])
+  :source-paths ["src"])

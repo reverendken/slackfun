@@ -14,6 +14,7 @@
 (def slack-info (atom nil))
 (def slack-trouts (atom nil))
 (def slack-dune-quotes (atom nil))
+(def slack-bofh-quotes (atom nil))
 
 (defn next-message-id []
   (swap! message-id-counter inc))
@@ -23,6 +24,9 @@
 
 (defn trouts []
   (or @slack-trouts (reset! slack-trouts (clojure.string/split-lines (slurp (resource-file-name "trout.txt"))))))
+
+(defn bofh-quotes []
+  (or @slack-bofh-quotes (reset! slack-bofh-quotes (clojure.string/split-lines (slurp (resource-file-name "bofh.txt"))))))
 
 (defn dune-quotes []
   (or @slack-dune-quotes (reset! slack-dune-quotes (json/read-str (slurp (resource-file-name "dune.json"))))))
@@ -63,3 +67,6 @@
 
 (defn dune [whom & {:keys [conf] :or {conf "random"}}]
   (sendMessage conf (format ":wormsign: scrapes the sand off of the wisdom of Dune for <@%s>:\n%s" whom (format-dune-quote (rand-nth (dune-quotes))))))
+
+(defn bofh [whom & {:keys [conf] :or {conf "random"}}]
+  (sendMessage conf (format ":troll: diagnoses <@%s>'s computer problem: %s" whom (rand-nth (bofh-quotes)))))
