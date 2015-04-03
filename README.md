@@ -17,6 +17,7 @@ Then in the Clojure repl, set your namespace:
 You are now ready to send stupid and useless quotes:
 
 ```clojure
+(hello "kpa") ; Say hello to user kpa
 (trout "djc") ; Slap user djc with some kind of fish
 (chuck "djc") ; Reveal facts about Chuck Norris to user djc
 (dune "kw") ; Send a Dune quote to user kw
