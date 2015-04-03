@@ -15,12 +15,16 @@
 (def slack-trouts (atom nil))
 (def slack-dune-quotes (atom nil))
 (def slack-bofh-quotes (atom nil))
+(def slack-greetings (atom nil))
 
 (defn next-message-id []
   (swap! message-id-counter inc))
 
 (defn resource-file-name [filename]
   (url-decode (.getPath (clojure.java.io/resource filename))))
+
+(defn greetings []
+  (or @slack-greetings (reset! slack-greetings (json/read-str (slurp (resource-file-name "greetings.json"))))))
 
 (defn trouts []
   (or @slack-trouts (reset! slack-trouts (clojure.string/split-lines (slurp (resource-file-name "trout.txt"))))))
@@ -70,3 +74,7 @@
 
 (defn bofh [whom & {:keys [conf] :or {conf "random"}}]
   (sendMessage conf (format ":troll: diagnoses <@%s>'s computer problem: %s" whom (rand-nth (bofh-quotes)))))
+
+(defn hello [whom & {:keys [conf] :or {conf "random"}}]
+  (let [which-language (rand-nth (keys (greetings)))]
+    (sendMessage conf (format ":wave: greets <@%s> in %s: `%s`" whom which-language (rand-nth (get (greetings) which-language))))))
