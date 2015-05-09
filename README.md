@@ -13,7 +13,7 @@ You will need to have Clojure and lein installed. Download the sourcecode, and i
 Then in the Clojure repl, set your namespace:
 
 ```clojure
-(use 'slackfun.core)
+(use 'slackfun.funny)
 ```
 
 You are now ready to send stupid and useless quotes:
