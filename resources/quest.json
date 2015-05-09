@@ -1,0 +1,91 @@
+{
+	"locations" : [
+					":ear_of_rice: swamp",
+					":cactus: badlands",
+					":cactus: wastelands",
+					":snowman: tundra",
+					":snake: jungle",
+					":deciduous_tree: dark woods",
+					":cactus: desert",
+					":ocean: cursed sea",
+					":european_post_office: flying citadel",
+					":european_post_office: fortress",
+					":rowboat: underground lair",
+					":school: sinister tower"
+				],
+	"adjectives":
+				[
+					"dread",
+					"despair",
+					"the forlorn",
+					"hopelessness",
+					"the damned",
+					"the forsaken",
+					"the cursed",
+					"the shadow mages",
+					"the Red Wizards",
+					"the cruel Java developers",
+					"the crazed ClojureScript developers",
+					"the mad clerics of Haskell",
+					"the Dogmatists of Agile"
+				],
+	"treasures":
+			{
+				"plain" : [
+					"longsword +1",
+					"shortsword +2",
+					"glaive-guisarme +3",
+					"two-handed sword +1/+6 vs. undead",
+					"flail +1/+4 vs. Java developers",
+					"dagger +1/+3 vs. vim enthusiasts"
+				],
+				"extended" : [
+					"IDE",
+					"JVM",
+					"Python interpreter",
+					"Clojure REPL",
+					"tome",
+					"skeletal hand",
+					"holy symbol"
+				]
+			}
+	"foes":
+			{
+				"names" : [
+					":dragon: dragon",
+					":skull: lich",
+					":troll: troll",
+					":crystal_ball: sorcerer",
+					":crystal_ball: illusionist",
+					":pouting_cat: orc tribe",
+					":snowboarder: ice giant",
+					":rage: Haskell developer",
+					":monkey: Clojure developer",
+					":neckbeard: C++ hacker",
+					":smiley_cat: vampire",
+					":jack_o_lantern: necromancer"
+				],
+				"adjectives" : [
+					"dread",
+					"despair",
+					"darkness",
+					"recursion",
+					"crushed dreams",
+					"nightmares",
+					"terror",
+					"madness",
+					"cruelty",
+					"the North",
+					"the South",
+					"the East",
+					"the West",
+					"fear",
+					"destruction",
+					"unspeakable wizardry",
+					"fate"
+				]
+			}
+}
+					
+					
+					

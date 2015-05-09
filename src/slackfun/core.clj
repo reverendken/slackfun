@@ -93,3 +93,30 @@
   (let [which-language (rand-nth (keys (greetings)))]
     (sendMessage conf (format ":books: thanks <@%s> with a gift of a Microsoft Access 97 book written in %s"
                               whom which-language))))
+
+(let [quest-store (atom nil)
+      quests #(or @quest-store
+                  (reset! quest-store (json/read-str
+                                               (slurp (resource-file-name "quest.json")))))
+      gen-quest-location #(format "%s of %s"
+                                  (rand-nth (get (quests) "locations"))
+                                  (rand-nth (get (quests) "adjectives")))
+      gen-quest-treasure-simple #(rand-nth (get (get (quests) "treasures") "plain"))
+      gen-quest-treasure-complex #(format "%s of %s"
+                                          (rand-nth (get (get (quests) "treasures") "extended"))
+                                          (rand-nth (get (quests) "adjectives")))
+      gen-quest-treasure #((rand-nth [gen-quest-treasure-simple gen-quest-treasure-complex]))
+      gen-quest-foe #(let [foe-info (get (quests) "foes")]
+                       (format "%s of %s"
+                               (rand-nth (get foe-info "names"))
+                               (rand-nth (get foe-info "adjectives"))))]
+  (defn quest [whom & {:keys [conf] :or {conf "random"}}]
+    (let [quest-location (gen-quest-location)
+          quest-foe (gen-quest-foe)
+          quest-treasure (gen-quest-treasure)]
+      (sendMessage conf (format ":crown: bestows a quest upon <@%s>: to sojourn to the %s, face the %s, and retrieve the %s."
+                                whom
+                                quest-location
+                                quest-foe
+                                quest-treasure)))))
+
