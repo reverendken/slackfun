@@ -20,7 +20,7 @@ You are now ready to send stupid and useless quotes:
 
 ```clojure
 (hello "kpa") ; Say hello to user kpa
-(trout "djc") ; Slap user djc with some kind of fish
+(slap "djc") ; Slap user djc with some kind of fish
 (chuck "djc") ; Reveal facts about Chuck Norris to user djc
 (dune "kw") ; Send a Dune quote to user kw
 (bofh "kpa") ; Diagnose whatever problem user kpa is currently having and possibly propose a solution
