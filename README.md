@@ -26,6 +26,7 @@ You are now ready to send stupid and useless quotes:
 (bofh "kpa") ; Diagnose whatever problem user kpa is currently having and possibly propose a solution
 (access-book "neil") ; Express gratitude to user neil with a useful book
 (quest "mw") ; Bestow a noble quest upon user mw
+(bruce "kw") ; Send a Bruce Schneier fact to user kw
 ```
 
 ## License
