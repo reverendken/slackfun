@@ -25,6 +25,7 @@ You are now ready to send stupid and useless quotes:
 (dune "kw") ; Send a Dune quote to user kw
 (bofh "kpa") ; Diagnose whatever problem user kpa is currently having and possibly propose a solution
 (access-book "neil") ; Express gratitude to user neil with a useful book
+(quest "mw") ; Bestow a noble quest upon user mw
 ```
 
 ## License
