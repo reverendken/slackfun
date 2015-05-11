@@ -64,6 +64,11 @@
     "lron.json"
     ":rocket: baffles %s with the ramblings of L Ron Hubbard:\n%s"))
 
+(def kim "I really have no appropriate docstring for this"
+  (create-funny-json
+    "kimjongun.json"
+    ":fist: inspires %s with the galvanizing slogans of Kim Jong-un:\n%s"))
+
 (let [slack-greetings (atom nil)
       greetings #(or
                    @slack-greetings
@@ -108,4 +113,8 @@
                                 quest-treasure)))))
 
 (def funny-list "Please keep this updated with any new funny functions you add"
-  [hello access-book chuck dune bofh slap quest])
+  [hello access-book chuck dune bofh slap quest lron kim])
+
+(let [pandora-list [access-book chuck dune bofh quest lron kim]]
+  (defn pandora "Let me out of the box" [whom & {:keys [conf] :or {conf "random"}}]
+    ((rand-nth pandora-list) whom conf)))
