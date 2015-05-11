@@ -59,6 +59,11 @@
     "bruce.json"
     ":lock: decrypts a Bruce Schneier fact for %s:\n%s"))
 
+(def lron "Let's all join the Sea Org"
+  (create-funny-json
+    "lron.json"
+    ":rocket: baffles %s with the ramblings of L Ron Hubbard:\n%s"))
+
 (let [slack-greetings (atom nil)
       greetings #(or
                    @slack-greetings
