@@ -8,4 +8,6 @@
                  [com.cemerick/url "0.1.1"]
                  [stylefruits/gniazdo "0.4.0"]
                  [org.clojure/data.json "0.2.6"]]
-  :source-paths ["src"])
+  :source-paths ["src"]
+  :repl-options {:init-ns slackfun.funny
+                 :welcome (println "Enter (funny-list) for a list of time wasters.")})
