@@ -27,6 +27,7 @@ You are now ready to send stupid and useless quotes:
 (access-book "neil") ; Express gratitude to user neil with a useful book
 (quest "mw") ; Bestow a noble quest upon user mw
 (bruce "kw") ; Send a Bruce Schneier fact to user kw
+(lron "kpa") ; Send an ... interesting ... quote about L Ron Hubbard to kpa
 ```
 
 ## License
