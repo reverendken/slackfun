@@ -1,0 +1,48 @@
+{
+	"agreements" : [
+		"hip hip, hooray!",
+		"tip top!",
+		"splendid!",
+		"hear hear!",
+		"huzzah!",
+		"+1",
+		"amen!",
+		"touch\\u00e9",
+		"\\u540c\\u610f\\u3067\\u3059",
+		"you said it!"
+	],
+	"disagree_quantities" : [
+		"spoonful",
+		"handful",
+		"barrel full",
+		"jeweled goblet",
+		"breadbox full",
+		"basket full",
+		"picnic basket full",
+	],
+	"disagree_things" : [
+		"hooey",
+		"absurdity",
+		"babble",
+		"balderdash",
+		"baloney",
+		"blather",
+		"bombast",
+		"bull",
+		"drivel",
+		"folly",
+		"foolishness",
+		"flim-flam",
+		"gibberish",
+		"hogwash",
+		"idiocy",
+		"hot air",
+		"applesauce",
+		"poppycock",
+		"piffle",
+		"tomfoolery",
+		"double-talk",
+		"gobbledygook",
+		"rigmarole "
+	]
+}

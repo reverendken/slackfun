@@ -112,8 +112,26 @@
                                 quest-foe
                                 quest-treasure)))))
 
+(let [agree-store (atom nil)
+      agreements #(or @agree-store
+                      (reset! agree-store (json/read-str
+                                            (slurp (resource-file-name "agree.json")))))]
+  (defn agree "Yes"
+    [whom & {:keys [conf] :or {conf "random"}}]
+    (sendMessage conf (format ":o: agrees with %s: %s"
+                              whom
+                              (rand-nth (get (agreements) "agreements")))))
+  (defn disagree "Um no."
+    [whom & {:keys [conf] :or {conf "random"}}]
+    (let [qty (rand-nth (get (agreements) "disagree_quantities"))
+          qty_of (rand-nth (get (agreements) "disagree_things"))]
+      (sendMessage conf (format ":x: disagrees with %s: That is a %s of %s"
+                                whom
+                                qty
+                                qty_of)))))
+
 (def funny-list "Please keep this updated with any new funny functions you add"
-  [hello access-book chuck dune bofh slap quest lron kim])
+  [hello access-book chuck dune bofh slap quest lron kim agree disagree])
 
 (let [pandora-list [access-book chuck dune bofh quest lron kim]]
   (defn pandora "Let me out of the box" [whom & {:keys [conf] :or {conf "random"}}]

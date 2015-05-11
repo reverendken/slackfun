@@ -22,6 +22,8 @@ You are now ready to send stupid and useless quotes:
 (quest "mw") ; Bestow a noble quest upon user mw
 (bruce "kw") ; Send a Bruce Schneier fact to user kw
 (lron "kpa") ; Send an ... interesting ... quote about L Ron Hubbard to kpa
+(agree "kpa") ; Agree with something insightful that kpa said
+(disagree "jk") ; Disagree with something ridiculous that jk said
 ```
 
 ## License
