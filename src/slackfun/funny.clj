@@ -119,14 +119,14 @@
   (defn agree "Yes"
     [whom & {:keys [conf] :or {conf "random"}}]
     (sendMessage conf (format ":o: agrees with %s: %s"
-                              whom
+                              (format-target whom)
                               (rand-nth (get (agreements) "agreements")))))
   (defn disagree "Um no."
     [whom & {:keys [conf] :or {conf "random"}}]
     (let [qty (rand-nth (get (agreements) "disagree_quantities"))
           qty_of (rand-nth (get (agreements) "disagree_things"))]
       (sendMessage conf (format ":x: disagrees with %s: That is a %s of %s"
-                                whom
+                                (format-target whom)
                                 qty
                                 qty_of)))))
 
