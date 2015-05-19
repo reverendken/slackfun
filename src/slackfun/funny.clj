@@ -41,31 +41,31 @@
     "trout.txt"
     ":fish: slaps %s with a %s"))
 
-(defn chuck "Reveal something awesome about Chuck Norris"
+(defn ^:pandora chuck "Reveal something awesome about Chuck Norris"
   [whom & {:keys [conf] :or {conf "random"}}]
   (sendMessage conf (format ":hoss: astounds %s with a *FACT* about Chuck Norris:\n> %s" (format-target whom) (get-chuck-fact))))
 
-(def dune "Eventually you will need to face my gom jabbar"
+(def ^:pandora dune "Eventually you will need to face my gom jabbar"
   (create-funny-json
     "dune.json"
     ":wormsign: scrapes the sand off of the wisdom of Dune for %s:\n%s"))
 
-(def bofh "We save on tech support costs by automating the helpdesk"
+(def ^:pandora bofh "We save on tech support costs by automating the helpdesk"
   (create-funny-txt
     "bofh.txt"
     ":troll: diagnoses %s's computer problem: %s"))
 
-(def bruce "The secret key is hidden in this docstring"
+(def ^:pandora bruce "The secret key is hidden in this docstring"
   (create-funny-json
     "bruce.json"
     ":lock: decrypts a Bruce Schneier fact for %s:\n%s"))
 
-(def lron "Let's all join the Sea Org"
+(def ^:pandora lron "Let's all join the Sea Org"
   (create-funny-json
     "lron.json"
     ":rocket: baffles %s with the ramblings of L Ron Hubbard:\n%s"))
 
-(def kim "I really have no appropriate docstring for this"
+(def ^:pandora kim "I really have no appropriate docstring for this"
   (create-funny-json
     "kimjongun.json"
     ":fist: inspires %s with the galvanizing slogans of Kim Jong-un:\n%s"))
@@ -80,7 +80,7 @@
     (let [which-language (rand-nth (keys (greetings)))]
       (sendMessage conf (format ":wave: greets %s in %s: `%s`" (format-target whom) which-language (rand-nth (get (greetings) which-language))))))
 
-  (defn access-book "Express gratitude with a useful technical manual"
+  (defn ^:pandora access-book "Express gratitude with a useful technical manual"
     [whom & {:keys [conf] :or {conf "random"}}]
     (let [which-language (rand-nth (keys (greetings)))]
       (sendMessage conf (format ":books: thanks %s with a gift of a Microsoft Access 97 book written in %s"
@@ -102,7 +102,7 @@
                        (format "%s of %s"
                                (rand-nth (get foe-info "names"))
                                (rand-nth (get foe-info "adjectives"))))]
-  (defn quest "Bestow a noble quest upon someone"
+  (defn ^:pandora quest "Bestow a noble quest upon someone"
     [whom & {:keys [conf] :or {conf "random"}}]
     (let [quest-location (gen-quest-location)
           quest-foe (gen-quest-foe)
@@ -137,6 +137,6 @@
     (for [[funny-name f] (filter #(not (contains? exclusions (name (get % 0)))) funnies)]
       (println (format "%s ==> %s" (name funny-name) (:doc (meta f)))))))
 
-(let [pandora-list [access-book chuck dune bofh quest lron kim]]
-  (defn pandora "Let me out of the box" [whom & {:keys [conf] :or {conf "random"}}]
-    ((rand-nth pandora-list) whom conf)))
+(defn pandora "Let me out of the box" [whom & {:keys [conf] :or {conf "random"}}]
+  (let [pandora-list (map #(get % 0) (filter #(:pandora (meta (get % 1))) (ns-publics 'slackfun.funny)))]
+    ((resolve (rand-nth pandora-list)) whom :conf conf)))
