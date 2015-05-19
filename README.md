@@ -26,9 +26,38 @@ You are now ready to send stupid and useless quotes:
 (disagree "jk") ; Disagree with something ridiculous that jk said
 ```
 
+## Editing Funnies
+
+Look at the files in `resources` -- some are simple text files with one line per item, others are JSON formatted.
+
+## Adding New Funnies
+
+If you are adding something straightforward, this is quite easy.
+
+To add a new funny based on an input with a text file, with one line per entry, add this to `slackfun/funny.clj`:
+
+```clojure
+(def ^:pandora my-funny "Docstring to be displayed by (funny-list)"
+  (create-funny-txt
+    "my-funny.txt" ;; Contained in /resources
+    "%s does something funny to %s: %s")) ;; First %s becomes "my" name; second is "your" name; third is the random quote
+```
+
+Note that `^:pandora` is optional. If you include this, then the function `(pandora "you")` can choose your new funny as one of the random options; if you think your funny is appropriate to be selected by pandora then include the flag, otherwise leave it out.
+
+To add a new funny based on a JSON input file, where the contents are a JSON array of quotes:
+
+```clojure
+(def ^:pandora my-funny "Docstring to be displayed by (funny-list)"
+  (create-funny-json
+    "my-funny.json" ;; Contained in /resources
+    "%s does something funny to %s: %s")) ;; First %s becomes "my" name; second is "your" name; third is the random quote
+```
+
+If you want to add something that doesn't fit this template you will need a custom implementation.
+
 ## License
 
 Copyright © 2015 Kenneth Ayers. The code is released under the Eclipse license.
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0.
