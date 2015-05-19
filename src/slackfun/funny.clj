@@ -1,19 +1,20 @@
 (ns slackfun.funny
   (:require [slackfun.core :refer (resource-file-name sendMessage is-real-user?)]
             [clojure.data.json :as json]
-            [clj-http.client :as client]))
+            [clj-http.client :as client]
+            [clojure.repl :refer (doc)]))
 
-(def CHUCK_URL "http://api.icndb.com/jokes/random")
+(def ^:private CHUCK_URL "http://api.icndb.com/jokes/random")
 
-(defn format-target [whom]
+(defn- format-target [whom]
   (if (is-real-user? whom)
     (format "<@%s>" whom)
     whom))
 
-(defn format-dune-quote [quote]
+(defn- format-dune-quote [quote]
   (clojure.string/join "\n" (map #(format "> %s" %1) (clojure.string/split-lines quote))))
 
-(defn create-funny-txt [input-file-name message-format]
+(defn- create-funny-txt [input-file-name message-format]
   (let [quote-store (atom nil)
         get-quotes #(or @quote-store (reset! quote-store
                                              (clojure.string/split-lines
@@ -22,7 +23,7 @@
     (fn [whom & {:keys [conf] :or {conf "random"}}]
       (sendMessage conf (format message-format (format-target whom) (rand-nth (get-quotes)))))))
 
-(defn create-funny-json [input-file-name message-format]
+(defn- create-funny-json [input-file-name message-format]
   (let [quote-store (atom nil)
         get-quotes #(or @quote-store (reset! quote-store
                                              (json/read-str
@@ -32,8 +33,8 @@
                                                                       (rand-nth
                                                                         (get-quotes))))))))
 
-(defn get-chuck-fact []
-  (:joke (:value (:body (client/get CHUCK_URL {:as :json})))))
+(defn- get-chuck-fact []
+  (clojure.string/replace (:joke (:value (:body (client/get CHUCK_URL {:as :json})))) "&quot;" "\""))
 
 (def slap "Slap some sense into someone by means of aquatic wildlife"
   (create-funny-txt
@@ -130,8 +131,11 @@
                                 qty
                                 qty_of)))))
 
-(def funny-list "Please keep this updated with any new funny functions you add"
-  [hello access-book chuck dune bofh slap quest lron kim agree disagree])
+(defn funny-list [] "Show a list of time-wasters"
+  (let [funnies (ns-publics 'slackfun.funny)
+        exclusions #{"funny-list"}]
+    (for [[funny-name f] (filter #(not (contains? exclusions (name (get % 0)))) funnies)]
+      (println (format "%s ==> %s" (name funny-name) (:doc (meta f)))))))
 
 (let [pandora-list [access-book chuck dune bofh quest lron kim]]
   (defn pandora "Let me out of the box" [whom & {:keys [conf] :or {conf "random"}}]
