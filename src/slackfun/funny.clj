@@ -135,7 +135,7 @@
       titles #(or @title-store
                   (reset! title-store (json/read-str
                                         (slurp (resource-file-name "titles.json")))))]
-  (defn ^:pandora appoint
+  (defn ^:pandora appoint "Comes with full powers and responsibilities of office"
     [whom & {:keys [conf] :or {conf "random"}}]
     (let [the-title (rand-nth (get (titles) "titles"))
           the-domain (rand-nth (get (titles) "dominions"))]
