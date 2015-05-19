@@ -131,6 +131,20 @@
                                 qty
                                 qty_of)))))
 
+(let [title-store (atom nil)
+      titles #(or @title-store
+                  (reset! title-store (json/read-str
+                                        (slurp (resource-file-name "titles.json")))))]
+  (defn ^:pandora appoint
+    [whom & {:keys [conf] :or {conf "random"}}]
+    (let [the-title (rand-nth (get (titles) "titles"))
+          the-domain (rand-nth (get (titles) "dominions"))]
+      (sendMessage conf (format ":tada: appoints %s to %s of %s"
+                                (format-target whom)
+                                the-title
+                                the-domain)))))
+                              
+
 (defn funny-list [] "Show a list of time-wasters"
   (let [funnies (ns-publics 'slackfun.funny)
         exclusions #{"funny-list"}]
