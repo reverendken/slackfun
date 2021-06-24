@@ -1,6 +1,6 @@
 # slackfun
 
-A library to post fun quotes to Slack and waste time
+A library to post not so fun quotes to Slack and waste time
 
 ## Usage
 
